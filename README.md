@@ -61,7 +61,7 @@ Edit
 Create a `.env` file in the root directory and add:
 
 ```env
-PORT=5000
+PORT=8080
 MONGO_URI=mongodb://localhost:27017/inventoryDB
 JWT_SECRET=your_jwt_secret
 📦 Install Dependencies
@@ -94,7 +94,7 @@ bash
 Copy
 Edit
 node app.js
-Server runs on: http://localhost:5000
+Server runs on: http://localhost:8080
 
 📬 API Endpoints
 🔐 User Authentication
@@ -141,7 +141,7 @@ Edit
 {
   "quantity": 20
 }
-GET http://localhost:8080/products
+GET http://localhost:8080/api/products
 Lists paginated products
 
 📊 Analytics Endpoints
