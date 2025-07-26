@@ -98,7 +98,9 @@ Server runs on: http://localhost:5000
 
 📬 API Endpoints
 🔐 User Authentication
-POST /login
+POST http://localhost:8080/api/register
+POST http://localhost:8080/api/login
+
 Request:
 
 json
@@ -111,7 +113,7 @@ Edit
 Response: JWT token
 
 📦 Product Management
-POST /products
+POST http://localhost:8080/api/products
 Adds a new product (requires JWT)
 
 Payload:
@@ -128,7 +130,7 @@ Edit
   "quantity": 10,
   "price": 19999
 }
-PUT /products/:id/quantity
+PUT http://localhost:8080/api/products/:id/quantity
 Updates stock quantity
 
 Payload:
@@ -139,19 +141,18 @@ Edit
 {
   "quantity": 20
 }
-GET /products?page=1&limit=10
+GET http://localhost:8080/products
 Lists paginated products
 
 📊 Analytics Endpoints
 All analytics require JWT.
 
-GET /analytics/total-products – Total number of products
+GET http://localhost:8080/api/analytics
+- Total number of products
+- Total Inventory Cost
+- Total Products
+- Low Stock
 
-GET /analytics/total-stock – Total quantity of all products
-
-GET /analytics/low-stock?threshold=5 – Products below threshold
-
-GET /analytics/inventory-value – Total inventory value
 
 🧪 Postman Collection
 You can import the provided Postman collection from the postman/ folder (if you created one) or use the above endpoints manually.
