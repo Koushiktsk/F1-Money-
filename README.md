@@ -1,4 +1,4 @@
-# F1-Money-Assinment (Drug Inventory Application)
+# FI-Money-Assinment (Drug Inventory Application)
 
 # 📦 Inventory Management Tool (Backend)
 
