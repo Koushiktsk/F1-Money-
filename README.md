@@ -17,6 +17,7 @@ This is a backend REST API for managing inventory and user authentication for a 
   - Total stock in inventory
   - Products below a quantity threshold
   - Total inventory value (price × quantity)
+  - Recently Added Product 
 
 ---
 
@@ -119,11 +120,11 @@ json
 Copy
 Edit
 {
-  "name": "Phone",
-  "type": "Electronics",
+  "name": "Drug name",
+  "type": "Drug Type",
   "sku": "PH123",
   "image_url": "http://example.com/image.jpg",
-  "description": "Smartphone with 128GB",
+  "description": "Drug Description",
   "quantity": 10,
   "price": 19999
 }
@@ -160,8 +161,6 @@ Passwords are hashed using bcryptjs
 
 JWT tokens are signed and verified securely
 
-📝 License
-This project is for educational and demo purposes. MIT license can be added if needed.
-
 🙋‍♂️ Author
 Krishna Kaushik Thota
+ECE IIIT Bhagalpur
