@@ -1,167 +1,144 @@
-# FI-Money-Assinment (Drug Inventory Application)
+# 🏥 FI-Money Drug Inventory Management System
 
-# 📦 Inventory Management Tool (Backend)
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.0-blue)
+![Docker](https://img.shields.io/badge/Docker-Containers-lightblue)
 
-This is a backend REST API for managing inventory and user authentication for a small business. Built using **Node.js**, **Express**, and **MongoDB**, it provides secure JWT-based login, CRUD operations for products, and analytics for tracking inventory metrics.
+## 📌 Overview
+A secure backend API for pharmaceutical inventory management with JWT authentication, product CRUD operations, and real-time analytics.
 
----
+## 🚀 Quick Start
 
-## 🚀 Features
+### Prerequisites
+- Docker Desktop ([Install Guide](https://www.docker.com/products/docker-desktop/))
+- Node.js 18+ (for local development)
+- MongoDB Atlas account (for production)
 
-- ✅ User login with **JWT authentication**
-- 🧾 Add new products with details like name, SKU, price, and quantity
-- 🔄 Update product stock quantity
-- 🔍 View all products with pagination
-- 📊 Product Analytics:
-  - Total products
-  - Total stock in inventory
-  - Products below a quantity threshold
-  - Total inventory value (price × quantity)
-  - Recently Added Product 
+### 1. Clone Repository
+```bash
+git clone https://github.com/yourusername/FI-Money-Assignment.git
+cd FI-Money-Assignment
+2. Configure Environment
+Create .env file:
 
----
+bash
+cp .env.example .env
+Edit .env:
 
-## 🧰 Tech Stack
-
-- **Backend:** Node.js + Express
-- **Database:** MongoDB (Mongoose ODM)
-- **Authentication:** JWT (jsonwebtoken)
-- **Security:** bcryptjs for password hashing
-- **Environment Management:** dotenv
-
----
-
-## 📁 Project Structure
-
-FIM/
-├── config/
-│   └── db.js
-├── controllers/
-│   ├── authController.js
-│   └── productController.js
-├── middleware/
-│   └── auth.js
-├── models/
-│   ├── Product.js
-│   └── User.js
-├── node_modules/
-├── routes/
-│   ├── authRoutes.js
-│   └── productRoutes.js
-├── utils/
-│   └── generateToken.js
-├── .env
-├── .gitignore
-├── app.js
-├── docker-compose.yml
-├── Dockerfile
-├── package-lock.json
-└── package.json
-
-yaml
-Copy
-Edit
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file in the root directory and add:
-
-```env
+env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/inventoryDB
-JWT_SECRET=your_jwt_secret
-📦 Install Dependencies
+MONGO_URI=mongodb://admin:password@mongo:27017/inventoryDB?authSource=admin
+JWT_SECRET=your_32_character_secure_secret
+3. Start with Docker
 bash
-Copy
-Edit
+docker-compose up --build
+
+🐳 Docker Architecture
+Diagram
+Code
+graph TD
+    A[Frontend] -->|HTTP Requests| B[Backend:8080]
+    B -->|MongoDB| C[(MongoDB:27017)]
+🌐 API Endpoints
+🔐 Authentication
+
+run http://localhost:5000
+Method	Endpoint	Description
+POST	/api/register	User registration
+POST	/api/login	JWT token generation
+💊 Product Management
+Method	Endpoint	Description
+POST	/api/products	Add new product
+PUT	/api/products/:id/quantity	Update stock quantity
+GET	/api/products	List all products (paginated)
+📊 Analytics
+Method	Endpoint	Metrics Provided
+GET	/api/analytics	Total products, inventory value, low stock alerts
+🛠️ Development
+Local Setup (Without Docker)
+bash
 npm install
-
-Required dependencies:
-express
-mongoose
-jsonwebtoken
-bcryptjs
-dotenv
-cors
-
-You can install them in one go:
+npm start
+Running Tests
 bash
-Copy
-Edit
-npm install express mongoose jsonwebtoken bcryptjs dotenv cors
-▶️ Run the Server
+npm test
+🚨 Production Deployment
+MongoDB Atlas Configuration
+Create free cluster on MongoDB Atlas
+
+Update .env:
+
+env
+MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/inventoryDB?retryWrites=true&w=majority
+Comment out mongo service in docker-compose.yml
+
+Kubernetes Deployment (Optional)
 bash
-Copy
-Edit
-node app.js
-Server runs on: http://localhost:5000
+kubectl apply -f k8s-deployment.yaml
+🔒 Security Best Practices
+Always:
 
-📬 API Endpoints
-🔐 User Authentication
-POST http://localhost:5000/api/register
-POST http://localhost:5000/api/login
+Use HTTPS in production
 
-Request:
-json
-Copy
-Edit
-{
-  "username": "admin",
-  "password": "password"
-}
-Response: JWT token
+Rotate JWT secrets quarterly
 
-📦 Product Management
-POST http://localhost:5000/api/products
-Adds a new product (requires JWT)
+Whitelist IPs in MongoDB Atlas
 
-Payload:
-json
-Copy
-Edit
-{
-  "name": "Drug name",
-  "type": "Drug Type",
-  "sku": "PH123",
-  "image_url": "http://example.com/image.jpg",
-  "description": "Drug Description",
-  "quantity": 10,
-  "price": 19999
-}
-PUT http://localhost:5000/api/products/:id/quantity
-Updates stock quantity
+Never:
 
-Payload:
+Commit .env to version control
 
-json
-Copy
-Edit
-{
-  "quantity": 20
-}
-GET http://localhost:5000/api/products
-Lists paginated products
+Use default credentials
 
-📊 Analytics Endpoints
-All analytics require JWT.
+Expose MongoDB ports publicly
 
-GET http://localhost:5000/api/analytics
-- Total number of products
-- Total Inventory Cost
-- Total Products
-- Low Stock
+🧪 Testing with Postman
+Import Postman Collection
 
+Set environment variables:
 
-🧪 Postman Collection
-You can import the provided Postman collection from the postman/ folder (if you created one) or use the above endpoints manually.
+baseUrl: http://localhost:8080
 
-🛡️ Security
-Passwords are hashed using bcryptjs
+token: (from login response)
 
-JWT tokens are signed and verified securely
+📈 Monitoring
+bash
+docker stats
+Monitor:
 
-🙋‍♂️ Author
-Krishna Kaushik Thota
-ECE IIIT Bhagalpur
+CPU/Memory usage
+
+Container health
+
+🤝 Contributing
+Fork the repository
+
+Create feature branch (git checkout -b feature/xyz)
+
+Commit changes (git commit -am 'Add feature xyz')
+
+Push to branch (git push origin feature/xyz)
+
+Open Pull Request
+
+📜 License
+MIT © 2025 Krishna Kaushik Thota
+
+💡 Pro Tip: Use docker-compose down -v to completely reset your development environment.
+
+text
+
+### Key Features:
+1. **Modern Formatting**: Badges, tables, and Mermaid diagrams
+2. **Complete Documentation**: From local setup to production deployment
+3. **Security Focus**: Clear do's/don'ts
+4. **Multi-environment Ready**: Docker, Kubernetes, and bare-metal
+5. **Professional Structure**: Consistent headers and sections
+
+### Files You'll Need:
+1. `.env.example` (template)
+2. `postman/` directory with collection
+3. `k8s-deployment.yaml` (if using Kubernetes)
+
+Would you like me to provide any of these additional files?
+
