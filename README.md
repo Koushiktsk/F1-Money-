@@ -61,7 +61,7 @@ Edit
 Create a `.env` file in the root directory and add:
 
 ```env
-PORT=8080
+PORT=5000
 MONGO_URI=mongodb://localhost:27017/inventoryDB
 JWT_SECRET=your_jwt_secret
 📦 Install Dependencies
@@ -94,12 +94,12 @@ bash
 Copy
 Edit
 node app.js
-Server runs on: http://localhost:8080
+Server runs on: http://localhost:5000
 
 📬 API Endpoints
 🔐 User Authentication
-POST http://localhost:8080/api/register
-POST http://localhost:8080/api/login
+POST http://localhost:5000/api/register
+POST http://localhost:5000/api/login
 
 Request:
 
@@ -113,7 +113,7 @@ Edit
 Response: JWT token
 
 📦 Product Management
-POST http://localhost:8080/api/products
+POST http://localhost:5000/api/products
 Adds a new product (requires JWT)
 
 Payload:
@@ -130,7 +130,7 @@ Edit
   "quantity": 10,
   "price": 19999
 }
-PUT http://localhost:8080/api/products/:id/quantity
+PUT http://localhost:5000/api/products/:id/quantity
 Updates stock quantity
 
 Payload:
@@ -141,13 +141,13 @@ Edit
 {
   "quantity": 20
 }
-GET http://localhost:8080/api/products
+GET http://localhost:5000/api/products
 Lists paginated products
 
 📊 Analytics Endpoints
 All analytics require JWT.
 
-GET http://localhost:8080/api/analytics
+GET http://localhost:5000/api/analytics
 - Total number of products
 - Total Inventory Cost
 - Total Products
