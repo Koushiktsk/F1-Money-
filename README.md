@@ -34,20 +34,28 @@ This is a backend REST API for managing inventory and user authentication for a 
 ## 📁 Project Structure
 
 FIM/
-├── app.js
-├── .env
-├── models/
-│ ├── User.js
-│ └── Product.js
+├── config/
+│   └── db.js
 ├── controllers/
-│ ├── authController.js
-│ └── productController.js
-├── routes/
-│ ├── authRoutes.js
-│ ├── productRoutes.js
-│ └── analyticsRoutes.js
+│   ├── authController.js
+│   └── productController.js
 ├── middleware/
-│ └── auth.js
+│   └── auth.js
+├── models/
+│   ├── Product.js
+│   └── User.js
+├── node_modules/
+├── routes/
+│   ├── authRoutes.js
+│   └── productRoutes.js
+├── utils/
+│   └── generateToken.js
+├── .env
+├── .gitignore
+├── app.js
+├── docker-compose.yml
+├── Dockerfile
+├── package-lock.json
 └── package.json
 
 yaml
@@ -69,22 +77,16 @@ bash
 Copy
 Edit
 npm install
+
 Required dependencies:
-
 express
-
 mongoose
-
 jsonwebtoken
-
 bcryptjs
-
 dotenv
-
 cors
 
 You can install them in one go:
-
 bash
 Copy
 Edit
@@ -102,7 +104,6 @@ POST http://localhost:5000/api/register
 POST http://localhost:5000/api/login
 
 Request:
-
 json
 Copy
 Edit
@@ -117,7 +118,6 @@ POST http://localhost:5000/api/products
 Adds a new product (requires JWT)
 
 Payload:
-
 json
 Copy
 Edit
