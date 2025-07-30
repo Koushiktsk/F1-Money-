@@ -40,20 +40,44 @@ graph TD
     A[Frontend] -->|HTTP Requests| B[Backend:8080]
     B -->|MongoDB| C[(MongoDB:27017)]
 🌐 API Endpoints
-🔐 Authentication
 
+🔐 Authentication
 run http://localhost:5000
 Method	Endpoint	Description
 POST	/api/register	User registration
 POST	/api/login	JWT token generation
+send request as :
+{
+  "username": "name",
+  "password": "password"
+}
+
 💊 Product Management
 Method	Endpoint	Description
 POST	/api/products	Add new product
+send request as:
+{
+  "name": "name",
+  "type": "Drug",
+  "sku": "fl-001",
+  "image_url": "http://example.com/image9.jpg",
+  "description": "Pain killer",
+  "quantity": 9,
+  "price": 19
+}
+
 PUT	/api/products/:id/quantity	Update stock quantity
+send request as:
+{
+    "quantity": 9
+}
+
 GET	/api/products	List all products (paginated)
+
 📊 Analytics
 Method	Endpoint	Metrics Provided
 GET	/api/analytics	Total products, inventory value, low stock alerts
+
 🛠️ Development
 Local Setup (Without Docker)
 bash
@@ -62,6 +86,7 @@ npm start
 Running Tests
 bash
 npm test
+
 🚨 Production Deployment
 MongoDB Atlas Configuration
 Create free cluster on MongoDB Atlas
